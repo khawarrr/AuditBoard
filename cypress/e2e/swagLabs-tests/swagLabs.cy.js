@@ -1,8 +1,9 @@
 describe('Login flow test', () => {
  
   
-  it('Verify Sauce Demo home page loads sucessfully', () => {
+  it('Verify Sauce Demo Login page loads sucessfully', () => {
     cy.visit('www.saucedemo.com')
+
   });
 
   it('Verify Login fails with invalid credentials', () => {
@@ -27,18 +28,17 @@ describe('Login flow test', () => {
     // following step verfify login is successful and product inventory is visible
     cy.url().should('include', 'inventory.html')
     cy.get('#inventory_container').should('be.visible')
+    
   });
   
   it('Verify user can add a product to cart', () => {
     cy.get('.title').contains('Products').should('be.visible')
     cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
     cy.get('#shopping_cart_container .shopping_cart_badge').scrollIntoView()
-      .should('be.visible');
+      .should('be.visible')
 
     cy.get('#shopping_cart_container').click()
-    cy.get('.inventory_item_name')
-      .contains('Sauce Labs Backpack')
-        .should('be.visible')
+    cy.get('.inventory_item_name').contains('Sauce Labs Backpack').should('be.visible')
     
   });
 
@@ -58,14 +58,14 @@ describe('Login flow test', () => {
     // confirming the order has been placed
     cy.get('.complete-header').contains('THANK YOU FOR YOUR ORDER').should('be.visible')
     //take us back to inventory list
-    cy.get('[data-test="back-to-products"]').should('be.visible').click() 
+    cy.get('[data-test="back-to-products"]').should('be.visible').click()
+
   });
 
   it('Verify user can logout successfully', () => {
     cy.get('.bm-burger-button').should('be.visible').click()
     cy.get('nav').children('#logout_sidebar_link')
-      .contains('Logout')
-        .should('be.visible').click()
+      .contains('Logout').should('be.visible').click()
     // confirm we are back to login page
     cy.get('[data-test="login-button"]').should('be.visible')
 
