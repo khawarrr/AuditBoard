@@ -1,0 +1,15 @@
+{
+  "name": "auditboard_sdet_challenge",
+  "version": "1.0.0",
+  "description": "Audit Board SDET take home challenge.",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "author": "Mohammad Khawar Khan",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.4.1"
+  }
+}
