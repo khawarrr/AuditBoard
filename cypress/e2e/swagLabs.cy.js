@@ -5,12 +5,28 @@ describe('Login flow test', () => {
     cy.visit('www.saucedemo.com')
   });
 
-  it('Verify login successfully', () => {
+  it('Verify Login does not work with wrong credentials', () => {
+    cy.get('[data-test="username"]').type('WRONG_USER')
+    cy.get('[data-test="password"]').type('secret_sauce')
+    cy.get('[data-test="login-button"]').click()
+    // test that error box class is visible on the page when loggin in with the wrong credentials.
+    cy.get('[data-test="error"]').should('be.visible')
+    
+  });
+  
+  it('Verify login successfully with right credentials', () => {
+    // remove the error box first
+    cy.get('.error-button').click()
+    // clear the input from username and password
+    cy.get('[data-test="username"]').clear()
+    cy.get('[data-test="password"]').clear()
+
+
     cy.get('[data-test="username"]').type('standard_user')
     cy.get('[data-test="password"]').type('secret_sauce')
     cy.get('[data-test="login-button"]').click()
     cy.url().should('include', 'inventory.html')
-  })
+  });
   
   it('Verify add the product to cart',{ scrollBehavior: false }, () => {
     cy.get('.title').contains('Products').should('be.visible')
@@ -23,7 +39,7 @@ describe('Login flow test', () => {
       .contains('Sauce Labs Backpack')
         .should('be.visible')
     
-  })
+  });
 
   it('Verify checkout process', () => {
     cy.get('[data-test="checkout"]').click()
@@ -41,7 +57,7 @@ describe('Login flow test', () => {
     cy.get('.complete-header').contains('THANK YOU FOR YOUR ORDER').should('be.visible')
     //take us back to inventory list
     cy.get('[data-test="back-to-products"]').click() 
-  })
+  });
 
   it('Verify logout successfully', () => {
     cy.get('.bm-burger-button').click()
@@ -51,6 +67,6 @@ describe('Login flow test', () => {
     // confirm we are back to login page
     cy.get('[data-test="login-button"]').should('be.visible')
 
-  })
+  });
 
 })
