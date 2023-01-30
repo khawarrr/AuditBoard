@@ -16,6 +16,9 @@ Using Cypress framework to create UI Flow automated tests for saucedemo.com.
 - Please run this command in terminal: npm run cy:run
 
 ### Screenshot & Video
+You can find the videos inside cypress > videos.
+<img width="924" alt="Screen Shot 2023-01-29 at 5 21 37 PM" src="https://user-images.githubusercontent.com/65691982/215569286-9366229d-bbc4-4bce-aa06-f12663d1001e.png">
+
 
 
 ## Technologies Used
